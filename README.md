@@ -237,20 +237,20 @@ python bot.py
 - [ ] 消息统计分析
 - [ ] 自动回复模板
 
-## 📄 许可证
+## 许可证
 
 本项目采用 MIT 许可证 - 详见 [LICENSE](LICENSE) 文件
 
-## 👥 作者
+## 作者
 
 - Sanite&Ava - [Telegram](https://t.me/Sanite_Ava)
 
-## 🙏 致谢
+## 致谢
 
 - [python-telegram-bot](https://github.com/python-telegram-bot/python-telegram-bot) - 优秀的Telegram Bot框架
 - [Google Gemini](https://ai.google.dev/) - 强大的AI能力
 
-## ⭐ Star History
+## Star History
 
 如果这个项目对你有帮助，请给个Star⭐️
 
