@@ -246,6 +246,6 @@ python bot.py
 </p>
 <p align="center">
   <a href="https://www.star-history.com/#Hamster-Prime/Telegram_Anti-harassment_two-way_chatbot&type=date&legend=top-left">
-    <img src="https://api.star-history.com/svg?repos=Hamster-Prime/Telegram_Anti-harassment_two-way_chatbot&type=date&legend=top-left" alt="Star History Chart">
+    <img src="https://api.star-history.com/svg?repos=Hamster-Prime/Telegram_Anti-harassment_two-way_chatbot&type=date&legend=bottom-right" alt="Star History Chart">
   </a>
 </p>
