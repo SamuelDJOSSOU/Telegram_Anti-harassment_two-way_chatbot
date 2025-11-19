@@ -44,5 +44,4 @@ class RateLimiter:
                 del self.user_message_timestamps[user_id]
 
 
-# 全局速率限制器实例
 rate_limiter = RateLimiter()

@@ -31,25 +31,21 @@ async def create_verification(user_id: int):
     return f"请完成人机验证: \n\n{question}", InlineKeyboardMarkup(keyboard)
 
 async def verify_answer(user_id: int, answer: str):
-    """
-    验证答案
-    返回: (success: bool, message: str, is_banned: bool)
-    """
     if user_id not in pending_verifications:
-        return False, "验证已过期或不存在。", False
+        return False, "验证已过期或不存在。", False, None
     
     verification = pending_verifications[user_id]
     
     if time.time() - verification['created_at'] > config.VERIFICATION_TIMEOUT:
         del pending_verifications[user_id]
-        return False, "验证超时，请重新发送消息。", False
+        return False, "验证超时，请重新发送消息。", False, None
     
     verification['attempts'] += 1
     
     if answer == verification['answer']:
         del pending_verifications[user_id]
         await db.update_user_verification(user_id, is_verified=True)
-        return True, "验证成功！", False
+        return True, "验证成功！", False, None
     
     if verification['attempts'] >= config.MAX_VERIFICATION_ATTEMPTS:
         del pending_verifications[user_id]
@@ -59,15 +55,29 @@ async def verify_answer(user_id: int, answer: str):
             "验证失败次数过多，您已被暂时封禁。\n\n"
             "如果您是认为误封，请重新发送消息并进行验证解除限制。"
         )
-        return False, message, True
+        return False, message, True, None
     
-    return False, f"答案错误，还有 {config.MAX_VERIFICATION_ATTEMPTS - verification['attempts']} 次机会。", False
+    challenge = await gemini_service.generate_verification_challenge()
+    new_question = challenge['question']
+    new_correct_answer = challenge['correct_answer']
+    new_options = challenge['options']
+    
+    pending_verifications[user_id] = {
+        'answer': new_correct_answer,
+        'question': new_question,
+        'options': new_options,
+        'attempts': verification['attempts'],
+        'created_at': time.time()
+    }
+    
+    keyboard = [
+        [InlineKeyboardButton(option, callback_data=f"verify_{option}") for option in new_options]
+    ]
+    
+    new_question_text = f"请完成人机验证: \n\n{new_question}"
+    return False, f"答案错误，还有 {config.MAX_VERIFICATION_ATTEMPTS - verification['attempts']} 次机会。", False, (new_question_text, InlineKeyboardMarkup(keyboard))
 
 def is_verification_pending(user_id: int) -> tuple[bool, bool]:
-    """
-    检查用户是否有待验证
-    返回: (has_pending: bool, is_expired: bool)
-    """
     if user_id not in pending_verifications:
         return False, True
     
@@ -81,11 +91,6 @@ def is_verification_pending(user_id: int) -> tuple[bool, bool]:
     return True, False
 
 def get_pending_verification_message(user_id: int):
-    """
-    获取待验证的问题和键盘
-    如果验证不存在或已过期，返回 None
-    返回: (question: str, keyboard: InlineKeyboardMarkup) 或 None
-    """
     if user_id not in pending_verifications:
         return None
     

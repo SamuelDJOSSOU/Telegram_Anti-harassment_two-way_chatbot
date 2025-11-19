@@ -7,9 +7,7 @@ import re
 from PIL import Image
 import io
 
-# 本地验证问题库 - 包含标准问题和反向排除问题
 LOCAL_VERIFICATION_QUESTIONS = [
-    # 标准直接提问
     {
         "question": "中国的首都是哪里？",
         "correct_answer": "北京",
@@ -85,7 +83,6 @@ LOCAL_VERIFICATION_QUESTIONS = [
         "correct_answer": "蓝色",
         "incorrect_answers": ["数字", "字母", "符号"]
     },
-    # 反向排除提问
     {
         "question": "以下哪个不属于行星？",
         "correct_answer": "月亮",
@@ -232,7 +229,6 @@ class GeminiService:
             return {"is_spam": False, "reason": "Analysis failed"}
     
     def _get_local_question(self) -> dict:
-        """从本地问题库随机选择一个问题"""
         question_data = random.choice(LOCAL_VERIFICATION_QUESTIONS)
         correct_answer = question_data['correct_answer']
         options = question_data['incorrect_answers'] + [correct_answer]
@@ -245,7 +241,6 @@ class GeminiService:
         }
 
     async def generate_unblock_question(self) -> dict:
-        """生成解封验证问题，使用与人机验证相同的提示词"""
         if not self.verification_model:
             return self._get_local_question()
 
@@ -299,7 +294,6 @@ class GeminiService:
             if 'response' in locals() and hasattr(response, 'text'):
                 print(f"Gemini原始响应: {response.text}")
             
-            # 从本地问题库随机选择
             return self._get_local_question()
 
     async def generate_verification_challenge(self) -> dict:
@@ -359,7 +353,6 @@ class GeminiService:
             if 'response' in locals() and hasattr(response, 'text'):
                 print(f"Gemini原始响应: {response.text}")
             
-            # 从本地问题库随机选择
             return self._get_local_question()
 
 gemini_service = GeminiService()

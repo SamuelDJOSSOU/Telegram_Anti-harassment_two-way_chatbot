@@ -157,11 +157,9 @@ async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE):
         if not config.VERIFICATION_ENABLED:
             await db.update_user_verification(user.id, is_verified=True)
         else:
-            # 检查是否有待验证
             has_pending, is_expired = is_verification_pending(user.id)
             
             if has_pending and not is_expired:
-                # 有未超时的待验证，提示完成之前的验证
                 verification_data = get_pending_verification_message(user.id)
                 if verification_data:
                     question, keyboard = verification_data
@@ -173,7 +171,6 @@ async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE):
                     )
                     return
             else:
-                # 没有待验证或已超时，创建新的验证
                 context.user_data['pending_update'] = update
                 question, keyboard = await create_verification(user.id)
                 await update.message.reply_text(question, reply_markup=keyboard)

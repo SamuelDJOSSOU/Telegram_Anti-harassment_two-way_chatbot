@@ -18,10 +18,18 @@ async def handle_callback(update: Update, context: ContextTypes.DEFAULT_TYPE):
     
     if data.startswith("verify_"):
         answer = data.split("_", 1)[1]
-        success, message, is_banned = await verify_answer(user_id, answer)
+        success, message, is_banned, new_question = await verify_answer(user_id, answer)
         
         if is_banned:
             await query.edit_message_text(text=message, reply_markup=None)
+            return
+        
+        if new_question:
+            new_question_text, new_keyboard = new_question
+            await query.edit_message_text(
+                text=f"{message}\n\n{new_question_text}",
+                reply_markup=new_keyboard
+            )
             return
         
         await query.edit_message_text(text=message)
@@ -75,19 +83,16 @@ async def handle_callback(update: Update, context: ContextTypes.DEFAULT_TYPE):
                         await analyzing_message.delete()
 
                 if should_forward:
-                    # 直接转发消息，避免再次触发内容审查
                     thread_id, is_new = await get_or_create_thread(pending_update, context)
                     if not thread_id:
                         await pending_update.message.reply_text("无法创建或找到您的话题，请联系管理员。")
                         return
                     
                     try:
-                        # 如果不是新话题，直接转发消息
                         if not is_new:
                             await _resend_message(pending_update, context, thread_id)
                     except BadRequest as e:
                         if "Message thread not found" in e.message:
-                            # 话题已被关闭，需要重新验证
                             await db.update_user_thread_id(user_id, None)
                             await db.update_user_verification(user_id, False)
                             
@@ -110,28 +115,11 @@ async def handle_callback(update: Update, context: ContextTypes.DEFAULT_TYPE):
                 await query.message.reply_text("现在您可以发送消息了！")
     
     elif data.startswith("unblock_"):
-        from services.blacklist import verify_unblock_answer, get_pending_unblock_message
+        from services.blacklist import verify_unblock_answer
         answer = data.split("_", 1)[1]
         message, success = await verify_unblock_answer(user_id, answer)
         
-        if success:
-            # 解封成功，移除键盘
-            await query.edit_message_text(text=message, reply_markup=None)
-        else:
-            # 答案错误或超时，检查是否还有机会
-            unblock_data = get_pending_unblock_message(user_id)
-            if unblock_data:
-                # 还有机会，保留键盘并显示错误消息
-                question, keyboard = unblock_data
-                error_message = (
-                    f"{message}\n\n"
-                    f"您已被暂时封禁。\n\n"
-                    f"如果您认为这是误操作，请回答以下问题以自动解封：\n\n{question}"
-                )
-                await query.edit_message_text(text=error_message, reply_markup=keyboard, parse_mode='Markdown')
-            else:
-                # 没有机会了或已超时，移除键盘
-                await query.edit_message_text(text=message, reply_markup=None)
+        await query.edit_message_text(text=message, reply_markup=None)
         
     elif data.startswith("admin_unblock_"):
         from services import blacklist

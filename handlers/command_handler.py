@@ -37,6 +37,7 @@ async def help_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
         "- `/block` - 在用户话题输入拉黑用户\n"
         "- `/blacklist` - 查看黑名单\n"
         "- `/stats` - 查看统计信息\n"
+        "- `/view_filtered` - 查看被拦截信息及发送者\n"
     )
     
     await update.message.reply_text(help_text, parse_mode='Markdown')
